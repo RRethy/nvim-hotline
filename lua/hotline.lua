@@ -1,5 +1,3 @@
-local strfmt = string.format
-
 local M = {}
 
 M.callbacks = {}
@@ -12,7 +10,7 @@ local function format(line, segment)
         end
     elseif spec_type == 'function' then
         table.insert(M.callbacks, segment)
-        table.insert(line, strfmt([[%%{luaeval("require('hotline')._callback(%d)")}]], #M.callbacks))
+        table.insert(line, string.format([[%%{luaeval("require('hotline')._callback(%d)")}]], #M.callbacks))
     else
         table.insert(line, tostring(segment))
     end
